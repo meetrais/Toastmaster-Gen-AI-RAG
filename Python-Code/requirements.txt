@@ -1,2 +1,6 @@
 python-dotenv
 openai
+langchain_community
+langchain
+langchain_openai
+pymongo
