@@ -30,22 +30,14 @@ def generate_embeddings(text: str):
     embeddings = response.data[0].embedding
     return embeddings
 
-def InitializeEmbeddingsForPDFFile():
+def CreateAndSaveEmbeddingsForPDFFile():
     loader = PyPDFLoader(file_path=DATA_PATH)
     pages = loader.load_and_split()
     
-    embedding = AzureOpenAIEmbeddings(
-        azure_endpoint=AZURE_OPEN_AI_ENDPOINT,
-        api_key=AZURE_OPEN_AI_KEY,
-        api_version=API_VERSION,
-        model=AZURE_OPENAI_MODEL,
-        chunk_size=1
-    )   
-    
     CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@toastmaster-db.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
     INDEX_NAME = "VectorSearchIndex"
-    NAMESPACE = "toastmaster.tmVectorIndex"
-    DB_NAME, COLLECTION_NAME = NAMESPACE.split(".")
+    DB_NAME = "Toastmaster4"
+    COLLECTION_NAME = "DetailsTable"
     client: MongoClient = MongoClient(CONNECTION_STRING)
     collection = client[DB_NAME][COLLECTION_NAME]
     
@@ -66,8 +58,8 @@ def InitializeEmbeddingsForPDFFile():
 def perform_vector_search(query):
     CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@toastmaster-db.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
     INDEX_NAME = "VectorSearchIndex"
-    NAMESPACE = "toastmaster.tmVectorIndex"
-    DB_NAME, COLLECTION_NAME = NAMESPACE.split(".")
+    DB_NAME = "Toastmaster4"
+    COLLECTION_NAME = "DetailsTable"
     client: MongoClient = MongoClient(CONNECTION_STRING)
     collection = client[DB_NAME][COLLECTION_NAME]
     query_embedding = generate_embeddings(query)    
