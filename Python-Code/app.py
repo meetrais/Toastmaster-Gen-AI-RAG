@@ -1,11 +1,27 @@
 import embeddings as EMBEDDINGS
 import createmongodbdbandindex
+import gradio as gr
 
-if __name__ == "__main__":
-    #InitializeEmbeddingsForPDFFile()
-    #print(embeddings)
-    results = EMBEDDINGS.perform_vector_search("Do you have anything very sweet?")
-    for result in results:
-        EMBEDDINGS.print_product_search_result(result)
-     #EMBEDDINGS.CreateAndSaveEmbeddingsForPDFFile()
-     #createmongodbdbandindex.create_mongodb_db_and_index()
+def run_generation(user_text, temperature, top_k, max_new_tokens, top_p):
+    response = EMBEDDINGS.perform_rag_vector_search(user_text, temperature, top_k, max_new_tokens, top_p)
+    return response
+
+if __name__ == "__main__":    
+    # Gradio UI setup
+    with gr.Blocks() as demo:
+        with gr.Row():
+            with gr.Column(scale=4):
+                user_text = gr.Textbox(placeholder="Write your question here", label="User input")
+                model_output = gr.Textbox(label="Model output", lines=10, interactive=False)
+                button_submit = gr.Button(value="Submit")
+
+            with gr.Column(scale=1):
+                max_new_tokens = gr.Slider(minimum=1, maximum=4000, value=250, step=1, label="Max New Tokens")
+                top_p = gr.Slider(minimum=0.05, maximum=1.0, value=0.95, step=0.05, label="Top-p (nucleus sampling)")
+                top_k = gr.Slider(minimum=1, maximum=10, value=5, step=1, label="Top-k")
+                temperature = gr.Slider(minimum=0.1, maximum=1.0, value=0.5, step=0.1, label="Temperature")
+
+        user_text.submit(run_generation, [user_text, temperature, top_k, max_new_tokens, top_p], model_output)
+        button_submit.click(run_generation, [user_text, temperature, top_k, max_new_tokens, top_p], model_output)
+
+        demo.queue(max_size=32).launch(server_port=8082)
