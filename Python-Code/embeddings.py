@@ -15,11 +15,13 @@ AZURE_OPEN_AI_KEY = os.getenv('AZURE_OPEN_AI_KEY')
 AZURE_OPEN_AI_ENDPOINT = os.getenv('AZURE_OPEN_AI_ENDPOINT')
 AZURE_COSMOSDB_MONGODB_USERNAME = os.getenv('AZURE_COSMOSDB_MONGODB_USERNAME')
 AZURE_COSMOSDB_MONGODB_PASSWORD = os.getenv('AZURE_COSMOSDB_MONGODB_PASSWORD')
+AZURE_COSMOSDB_MONGODB_CLUSTER = os.getenv('AZURE_COSMOSDB_MONGODB_CLUSTER')
 API_VERSION = "2024-02-01"
 AZURE_OPENAI_EMBEDDING_MODEL = "text-embedding-ada-002"
 AZURE_OPENAI_CHAT_MODEL = "gpt-35-turbo"
 DATA_PATH = 'Python-Code/data/Toastmasters-CC-Manual.pdf'
 
+#This function creates and returns embedding for the text
 def generate_embeddings(text: str):
     client = AzureOpenAI(
         azure_endpoint=AZURE_OPEN_AI_ENDPOINT,
@@ -30,19 +32,22 @@ def generate_embeddings(text: str):
     embeddings = response.data[0].embedding
     return embeddings
 
+#This function splits/chunks PDF file into pages, then creates embeddings and saves into MongoDB. 
 def CreateAndSaveEmbeddingsForPDFFile():
+    print("Creating and saving embeddings for PDF file. This may take few minutes.")
     loader = PyPDFLoader(file_path=DATA_PATH)
     pages = loader.load_and_split()
     
-    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@toastmaster-db.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
+    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@" + AZURE_COSMOSDB_MONGODB_CLUSTER
     INDEX_NAME = "VectorSearchIndex"
-    DB_NAME = "Toastmaster4"
+    DB_NAME = "Toastmaster5"
     COLLECTION_NAME = "DetailsTable"
     client: MongoClient = MongoClient(CONNECTION_STRING)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     bulk_operations = []
     counter =1
+    #Looping through PDF pages, create embeddings and save into Vector-Index alongwith id and page text.
     for page in pages:
         page_text = page.page_content
         content_vector = generate_embeddings(page_text)    
@@ -54,11 +59,13 @@ def CreateAndSaveEmbeddingsForPDFFile():
         counter+=1
     # execute bulk operations
     collection.bulk_write(bulk_operations)
+    print("Embeddings for PDF file saved in MongoDB.")
 
+#This function performs vector search on MongoDB vector-index for the user query. Then returns vector-search result.
 def perform_vector_search(query, top_k):
-    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@toastmaster-db.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
+    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@" + AZURE_COSMOSDB_MONGODB_CLUSTER    
     INDEX_NAME = "VectorSearchIndex"
-    DB_NAME = "Toastmaster4"
+    DB_NAME = "Toastmaster5"
     COLLECTION_NAME = "DetailsTable"
     client: MongoClient = MongoClient(CONNECTION_STRING)
     collection = client[DB_NAME][COLLECTION_NAME]
@@ -79,6 +86,7 @@ def perform_vector_search(query, top_k):
     results = collection.aggregate(pipeline)
     return results
 
+#This function performs first vector-search and then RAG search by using OpenAI model defined for chat-completion.
 def perform_rag_vector_search(user_text, temprature, top_k, max_tokens, top_p):
     system_prompt = """
         You atr a helpful assistant. Answer only if you know the answer otherwise say - Sorry I dont know about this.

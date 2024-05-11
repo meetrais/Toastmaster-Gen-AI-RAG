@@ -1,12 +1,14 @@
 import embeddings as EMBEDDINGS
 import createmongodbdbandindex
 import gradio as gr
+import warnings
+warnings.filterwarnings("ignore")
 
 def run_generation(user_text, temperature, top_k, max_new_tokens, top_p):
     response = EMBEDDINGS.perform_rag_vector_search(user_text, temperature, top_k, max_new_tokens, top_p)
     return response
 
-if __name__ == "__main__":    
+def main():
     # Gradio UI setup
     with gr.Blocks() as demo:
         with gr.Row():
@@ -25,3 +27,8 @@ if __name__ == "__main__":
         button_submit.click(run_generation, [user_text, temperature, top_k, max_new_tokens, top_p], model_output)
 
         demo.queue(max_size=32).launch(server_port=8082)
+
+if __name__ == "__main__":    
+    #createmongodbdbandindex.create_mongodb_db_and_index()
+    #EMBEDDINGS.CreateAndSaveEmbeddingsForPDFFile()
+    main()

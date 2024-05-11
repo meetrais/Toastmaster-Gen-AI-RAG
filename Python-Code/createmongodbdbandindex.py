@@ -3,6 +3,7 @@ import urllib
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
+#This function creates dtabase, collection and index in MongoDB VCore cluster
 def create_mongodb_db_and_index():
     
     #Load variables from .env file
@@ -13,15 +14,17 @@ def create_mongodb_db_and_index():
     AZURE_OPEN_AI_ENDPOINT = os.getenv('AZURE_OPEN_AI_ENDPOINT')
     AZURE_COSMOSDB_MONGODB_USERNAME = os.getenv('AZURE_COSMOSDB_MONGODB_USERNAME')
     AZURE_COSMOSDB_MONGODB_PASSWORD = os.getenv('AZURE_COSMOSDB_MONGODB_PASSWORD')
+    AZURE_COSMOSDB_MONGODB_CLUSTER = os.getenv('AZURE_COSMOSDB_MONGODB_CLUSTER')
     
-    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@toastmaster-db.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
+    #Initialize Azure MongoDB VCore connection
+    CONNECTION_STRING = "mongodb+srv://" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_USERNAME) + ":" + urllib.parse.quote(AZURE_COSMOSDB_MONGODB_PASSWORD) + "@" + AZURE_COSMOSDB_MONGODB_CLUSTER
     client: MongoClient = MongoClient(CONNECTION_STRING)
     
-    # Specify the database and collection
-    db = client.Toastmaster4
+    # Specify the name of database and collection
+    db = client.Toastmaster5
     collection = db.DetailsTable
     
-    # Create the products vector index
+    # Create the vector index
     db.command({
     'createIndexes': 'DetailsTable',
     'indexes': [
@@ -39,3 +42,5 @@ def create_mongodb_db_and_index():
         }
     ]
     })
+    
+    print("Database Created.")
