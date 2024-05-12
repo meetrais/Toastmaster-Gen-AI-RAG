@@ -1,4 +1,4 @@
-# Toastmaster-Gen-AI
+# Toastmaster-Gen-AI - WORK IN PROGRESS
 
 ## Introduction
 Gen-AI specialized chatbot designed to answer fundamental questions about Toastmaster program. This project demonstrates how to develop retrieval sugmented generation based chat-bot using Azure Open-AI service and Azure Cosmos-Db for Mongo-DB VCore. Following are main functionalities of this project.  
