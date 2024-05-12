@@ -76,5 +76,5 @@ If you followed all the steps properly you should be able to see result of Retri
 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/0b07101b-e0a3-4b62-8674-f7a792a0487b)
 
-If it doesnt work reach out to me and I will be happy to help.
+If it doesnt work then reach out to me and I will be happy to help.
 
