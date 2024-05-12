@@ -48,9 +48,10 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 
 ### Create Azure Container App Environment
 1. In Azure plugin click on + sign to create new Azure resource, select "Create Container Apps Environment" option and then follow the steps.
+
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/90cd3a8c-fb3c-4726-9130-835d6ff087b0)
 
-2. In Docker plugin in REGISTRIES section locate Image of your backend app which you pushed to ACR earlier and then select option "Deploy image to Azure Container Apps".
+3. In Docker plugin in REGISTRIES section locate Image of your backend app which you pushed to ACR earlier and then select option "Deploy image to Azure Container Apps".
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/c4b812ed-21e0-49fa-9b16-d5bc369a9886)
 
 
