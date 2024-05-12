@@ -14,7 +14,7 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 ## Deployment
 
 ### Docker Deployment
-Once you tested your backend and frontend app in your local its time to deploy them to Docker.  
+Once you tested your backend and frontend apps in your local its time to deploy them to Docker.  
 
 Run below commands in the terminal of VS-Code/IDE to deploy and run backend app in Docker.  
 cd backend  
