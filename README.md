@@ -51,6 +51,7 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/90cd3a8c-fb3c-4726-9130-835d6ff087b0)
 
 2. Once your Container Apps Environment is created, right-click on it and select "Create Container App" and follow the steps. Select "Container Registry" option and use 5000 for port.
+
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/9c38ed68-4c0f-4da6-bd6c-59b859319926)
 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ac57d21d-5c6c-4066-8283-8a6046be71d9)
