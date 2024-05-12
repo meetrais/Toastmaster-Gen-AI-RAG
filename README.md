@@ -14,20 +14,23 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 ## Deployment
 
 ## Docker Deployment
-cd backend
-docker build -t toastmaster-gen-ai-backend .
-docker run --name toastmaster-gen-ai-backend -p 5000:5000 -d toastmaster-gen-ai-backend
+Once you tested your backend and frontend app in your local its time to deploy them to Docker.  
 
-cd..
-cd frontend
-docker build -t toastmaster-gen-ai-frontend .
-docker run --name toastmaster-gen-ai-frontend -p 7860:7860 toastmaster-gen-ai-frontend
+Run below commands in the terminal of VS-Code/IDE to deploy and run backend app in Docker.  
+cd backend  
+docker build -t toastmaster-gen-ai-backend .  
+docker run --name toastmaster-gen-ai-backend -p 5000:5000 -d toastmaster-gen-ai-backend  
 
-docker network create toastmaster-network
-docker network connect toastmaster-network toastmaster-gen-ai-backend
-docker network connect toastmaster-network toastmaster-gen-ai-frontend
+Then run below commands to deploy and run frontend app in Docker.  
+cd..  
+cd frontend  
+docker build -t toastmaster-gen-ai-frontend .  
+docker run --name toastmaster-gen-ai-frontend -p 7860:7860 toastmaster-gen-ai-frontend  
 
-https://code.visualstudio.com/docs/containers/app-service
+Both the above containers needs to be in the same Docker network so run below commands.  
+docker network create toastmaster-network  
+docker network connect toastmaster-network toastmaster-gen-ai-backend  
+docker network connect toastmaster-network toastmaster-gen-ai-frontend  
 
 ## Azure Deployment
 I use VS Code for development and deployments. So following steps use VS-Code and its Docker and Azure plugins. But you can also do all those steps using Azure CLI commands.
