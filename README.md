@@ -11,6 +11,9 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 ### Folder/File Structure
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/5966ffc6-dad2-49eb-8d5e-38b070a9bb21)
 
+## Deployment
+
+## Docker Deployment
 cd backend
 docker build -t toastmaster-gen-ai-backend .
 docker run --name toastmaster-gen-ai-backend -p 5000:5000 -d toastmaster-gen-ai-backend
@@ -25,3 +28,13 @@ docker network connect toastmaster-network toastmaster-gen-ai-backend
 docker network connect toastmaster-network toastmaster-gen-ai-frontend
 
 https://code.visualstudio.com/docs/containers/app-service
+
+## Azure Deployment
+
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/4dd87855-0918-406f-9988-0424e97785e6)
+
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/a3d4c095-9d25-4666-b72a-38e7c3abac79)
+
+
+
+
