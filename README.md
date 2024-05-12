@@ -68,7 +68,7 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/d3fb3e63-c043-4f51-a551-84b609b2508b)
 
 4. After that you should be able to see docker image of frontend app in your ACR like below. Now right click on that image and select option "Deploy Image to Azure App Service.". Follow the steps to create Azure App Service and Service Plan. It will also deploy your docker image of frontend app to Azure App Service.
-5. 
+
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/46d0bc2d-0200-439c-8b2e-bec9baa81a19)
 
 ## Showtime
