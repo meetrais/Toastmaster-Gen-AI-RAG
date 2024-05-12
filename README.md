@@ -60,6 +60,16 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 1. Before we deploy docker image of frontend app to Azure Web-App, make below change in app.py so frontend app will call backend app endpoint deployed in Azure Container app. Then re-deploy image of frontend app to Docker.  
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/573702b3-2546-4020-87f1-7111d0ea4d89)
 
+2. In Docker plugin, IMAGES section righ-click on docker image of frontend app and push to ACR. Just like we tagged and pushed docker image of backend app above.
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/d3fb3e63-c043-4f51-a551-84b609b2508b)
 
+3. After that you should be able to see docker image of frontend app in your ACR like below. Now right click on that image and select option "Deploy Image to Azure App Service.". Follow the steps to create Azure App Service and Service Plan. It will also deploy your docker image of frontend app to Azure App Service.
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/46d0bc2d-0200-439c-8b2e-bec9baa81a19)
 
+## Showtime
+If you followed all the steps properly you should be able to see result of Retrieval Augmented Generation based Chat-Bot as below. 
+
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/0b07101b-e0a3-4b62-8674-f7a792a0487b)
+
+If it doesnt work reach out to me and I will be happy to help.
 
