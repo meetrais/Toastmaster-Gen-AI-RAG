@@ -1,10 +1,8 @@
-FROM python:3.8-slim
+FROM python:3.8-slim-buster
 
-WORKDIR /usr/src/app
-COPY requirements.txt /tmp/
-RUN pip install --requirement /tmp/requirements.txt
+WORKDIR /python-docker
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 COPY . .
-EXPOSE 7860
-ENV GRADIO_SERVER_NAME="0.0.0.0"
 
-CMD ["python", "app.py"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]

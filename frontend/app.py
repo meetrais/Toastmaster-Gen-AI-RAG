@@ -1,10 +1,30 @@
 import gradio as gr
+import requests
 import warnings
 warnings.filterwarnings("ignore")
 
 def run_generation(user_text, temperature, top_k, max_new_tokens, top_p):
-    response = "Something"
-    return response
+    
+    #1 - Local 2- Docker 3- Azure
+    ENVIRONMENT = 2
+    PORT=str(5000)
+    
+    if ENVIRONMENT==1:
+        BACKEND_SERVICE_ENDPOINT= "http://localhost:" + PORT
+    elif ENVIRONMENT==2:
+        BACKEND_SERVICE_ENDPOINT= "http://toastmaster-gen-ai-backend:" + PORT
+    elif ENVIRONMENT==3:
+        BACKEND_SERVICE_ENDPOINT= "http://Azure:" + PORT
+    
+    api = BACKEND_SERVICE_ENDPOINT
+    api+= "/getresponse?user_text=" + user_text
+    api+=  "&temperature=" + str(temperature) 
+    api+=  "&top_k=" + str(top_k) 
+    api+=  "&max_new_tokens=" + str(max_new_tokens)
+    api+=  "&top_p=" + str(top_p)
+    
+    response = requests.get(api)
+    return response.text
 
 def main():
     # Gradio UI setup

@@ -70,14 +70,14 @@ def perform_vector_search(query, top_k):
     client: MongoClient = MongoClient(CONNECTION_STRING)
     collection = client[DB_NAME][COLLECTION_NAME]
     query_embedding = generate_embeddings(query)    
-    number_of_resilts=top_k
+    number_of_results=top_k
     pipeline = [
         {
             '$search': {
                 "cosmosSearch": {
                     "vector": query_embedding,
                     "path": "contentVector",
-                    "k": number_of_resilts
+                    "k": number_of_results
                 },
                 "returnStoredSource": True }},
         {'$project': { 'similarityScore': { '$meta': 'searchScore' }, 'document' : '$$ROOT' } }
