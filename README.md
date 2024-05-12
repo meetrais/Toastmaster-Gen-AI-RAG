@@ -56,6 +56,9 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ac57d21d-5c6c-4066-8283-8a6046be71d9)
 
+### Deploy Docker Image of frontend app to Azure Web-App
+1. Before we deploy docker image of frontend app to Azure Web-App, make below change in app.py so frontend app will call backend app endpoint deployed in Azure Container app. Then re-deploy image of frontend app to Docker.  
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/573702b3-2546-4020-87f1-7111d0ea4d89)
 
 
 
