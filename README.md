@@ -13,7 +13,7 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 
 ## Deployment
 
-## Docker Deployment
+### Docker Deployment
 Once you tested your backend and frontend app in your local its time to deploy them to Docker.  
 
 Run below commands in the terminal of VS-Code/IDE to deploy and run backend app in Docker.  
@@ -32,24 +32,24 @@ docker network create toastmaster-network
 docker network connect toastmaster-network toastmaster-gen-ai-backend  
 docker network connect toastmaster-network toastmaster-gen-ai-frontend  
 
-## Azure Deployment
+### Azure Deployment
 I use VS Code for development and deployments. So following steps use VS-Code and its Docker and Azure plugins. But you can also do all those steps using Azure CLI commands.
 
-### Create Azure Container Registry
+***Create Azure Container Registry***
 1. In Docker plugin click on your Azure Subscription and select Create Registry then follow steps to create ACR. You may have to login to Azure.  
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/73f78e03-e779-4907-a234-e547ef942a98)
 
 2. If you already have ACR in your Azure Subscription then you can connect to it as below.  
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/a3d4c095-9d25-4666-b72a-38e7c3abac79)
 
-### Deploy Docker Image of Backend app to ACR
+***Deploy Docker Image of Backend app to ACR***
 1. In Docker plugin inside IMAGES section locate your Image of backend app and then right-click and select Tag option.
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/4fb0e850-a4e9-4288-857b-138be0ce1ee6)
 
 2. Again right-click image and select Push option and follow steps to deploy your image to Azure Container Registry. 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ed837765-3e93-4b01-81fb-8dad02fdd01e)
 
-### Create Azure Container App Environment
+***Create Azure Container App Environment***
 1. In Azure plugin click on + sign to create new Azure resource, select "Create Container Apps Environment" option and then follow the steps. 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/90cd3a8c-fb3c-4726-9130-835d6ff087b0)
 
@@ -59,7 +59,7 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ac57d21d-5c6c-4066-8283-8a6046be71d9)
 
-### Deploy Docker Image of frontend app to Azure Web-App
+***Deploy Docker Image of frontend app to Azure Web-App***
 1. Before we deploy docker image of frontend app to Azure Web-App, make below change in app.py so frontend app will call backend app endpoint deployed in Azure Container app. Then re-deploy image of frontend app to Docker.  
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/573702b3-2546-4020-87f1-7111d0ea4d89)
 
