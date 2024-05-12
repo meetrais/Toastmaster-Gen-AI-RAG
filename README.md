@@ -11,3 +11,6 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 ### Folder/File Structure
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/5966ffc6-dad2-49eb-8d5e-38b070a9bb21)
 
+docker build -t gradio-app .
+docker run -p 7860:7860 gradio-app
+

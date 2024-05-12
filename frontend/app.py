@@ -1,11 +1,9 @@
-import embeddings as EMBEDDINGS
-import createmongodbdbandindex
 import gradio as gr
 import warnings
 warnings.filterwarnings("ignore")
 
 def run_generation(user_text, temperature, top_k, max_new_tokens, top_p):
-    response = EMBEDDINGS.perform_rag_vector_search(user_text, temperature, top_k, max_new_tokens, top_p)
+    response = "Something"
     return response
 
 def main():
