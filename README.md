@@ -1,24 +1,45 @@
 # Toastmaster-Gen-AI - WORK IN PROGRESS
 
 ## Introduction
-Gen-AI specialized chatbot designed to answer fundamental questions about Toastmaster program. This project demonstrates how to develop retrieval sugmented generation based chat-bot using Azure Open-AI service and Azure Cosmos-Db for Mongo-DB VCore. Following are main functionalities of this project.  
-1. Create database, collection and vector-index in Mongo-DB VCore cluster.  
-2. Create and save embeddings for PDF file in Mongo-DB VCore database.  
+Gen-AI specialized chatbot designed to answer fundamental questions about Toastmaster program. This project demonstrates how to develop retrieval sugmented generation based chat-bot using Azure Open-AI service and Azure Cosmos-Db for Mongo-DB(VCore). Following are main functionalities of this project.  
+1. Create database, collection and vector-index in Mongo-DB(VCore) cluster.  
+2. Create and save embeddings for PDF file in Mongo-DB(VCore) database.  
 3. Perform plain vector search for user query/question.  
 4. Perform chat-completion for user query/question.
-   
-## Code Walkthrough
+
+## Code Walkthrough/Setup
+
+### Azure Cosmos-DB for Mongo-DB(VCore) Cluster
+Search for Azure Cosmos DB for MongoDB in the Azure portal and create cluster.  
+
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/7f0a03a9-ee35-45f0-a310-5b3f3d565eba)
+
 ### Folder/File Structure
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/5966ffc6-dad2-49eb-8d5e-38b070a9bb21)
 
 ### Code overview
-First thing first, after you clone this git repository add .env file in backend folder. Then add below environment variables and initialize with your values.  
+***backend***  
+1. createmongodbdbandindex.py - Run this file to create database, collection and vector-index in Mongo-DB(VCore) cluster.  
+2. embeddings.py - This file has below functions.  
+   generate_embeddings - Generate embeddings for the text using Azure Open AI.  
+   CreateAndSaveEmbeddingsForPDFFile - This function splits/chunks PDF file into pages, then creates embeddings and saves into MongoDB.  
+   perform_vector_search - This function performs vector search on MongoDB vector-index for the user query. Then returns vector-search result.  
+   perform_rag_vector_search - This function performs first vector-search and then RAG search by using OpenAI model defined for chat-completion.  
+3. app.py - This file contains HTTP get method getresponse which is called in frontend app for vector-search based chat-completion.  
+4. Dockerfile - This file is used to deploy backend app to docker.  
+5. Create .env file in backend folder. Then add below environment variables and initialize with your values.  
+6. requirements.txt - Contains list of Python libraries needed this program to run.  
 
 AZURE_OPEN_AI_ENDPOINT=""  
 AZURE_OPEN_AI_KEY=""  
 AZURE_COSMOSDB_MONGODB_USERNAME=""  
 AZURE_COSMOSDB_MONGODB_PASSWORD=""  
 AZURE_COSMOSDB_MONGODB_CLUSTER=""  
+
+***frontend***
+1. app.py - To generate UI for Chat-Bot interface and call backend GET API for vector-search based chat-completion.
+2. Dockerfile - This file is used to deploy frontend app to docker.
+3. requirements.txt - Contains list of Python libraries needed this program to run.  
 
 ## Deployment
 
