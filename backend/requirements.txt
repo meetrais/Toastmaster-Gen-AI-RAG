@@ -5,3 +5,4 @@ langchain
 langchain_openai
 pymongo
 flask
+gunicorn

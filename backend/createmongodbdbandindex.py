@@ -44,3 +44,6 @@ def create_mongodb_db_and_index():
     })
     
     print("Database Created.")
+    
+if __name__ == "__main__": 
+    create_mongodb_db_and_index()
