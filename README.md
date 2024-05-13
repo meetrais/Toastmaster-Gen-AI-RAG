@@ -7,9 +7,18 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 3. Perform plain vector search for user query/question.  
 4. Perform chat-completion for user query/question.
    
-## Code Overview
+## Code Walkthrough
 ### Folder/File Structure
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/5966ffc6-dad2-49eb-8d5e-38b070a9bb21)
+
+### Code overview
+First thing first, after you clone this git repository add .env file in backend folder. Then add below environment variables and initialize with your values.  
+
+AZURE_OPEN_AI_ENDPOINT=""  
+AZURE_OPEN_AI_KEY=""  
+AZURE_COSMOSDB_MONGODB_USERNAME=""  
+AZURE_COSMOSDB_MONGODB_PASSWORD=""  
+AZURE_COSMOSDB_MONGODB_CLUSTER=""  
 
 ## Deployment
 
