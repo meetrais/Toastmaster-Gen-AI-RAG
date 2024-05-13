@@ -7,6 +7,9 @@ Gen-AI specialized chatbot designed to answer fundamental questions about Toastm
 3. Perform plain vector search for user query/question.  
 4. Perform chat-completion for user query/question.
 
+## High Level Architecture Diagram
+![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/1999e549-42c7-4e22-b1a6-9e07c93c4b54)
+
 ## Code Walkthrough/Setup
 
 ### Azure Cosmos-DB for Mongo-DB(VCore) Cluster
