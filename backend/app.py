@@ -8,7 +8,7 @@ def run_generation(user_text, temperature, top_k, max_new_tokens, top_p):
     return response
 
 @app.route('/getresponse')
-def hello_geek():
+def getresponse():
     query = request.args.get("user_text")
     temperature = request.args.get("temperature")
     top_k = int(request.args.get("top_k"))
