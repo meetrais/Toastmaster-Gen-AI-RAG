@@ -44,7 +44,7 @@ AZURE_COSMOSDB_MONGODB_CLUSTER=""
 ## Deployment
 
 ### Docker Deployment
-Once you tested your backend and frontend apps in your local its time to deploy them to Docker.  
+Once you tested your backend and frontend apps in your local its time to deploy them to Docker. These commands are for Windows OS.  
 
 Run below commands in the terminal of VS-Code/IDE to deploy and run backend app in Docker.  
 cd backend  
