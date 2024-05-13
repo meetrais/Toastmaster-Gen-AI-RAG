@@ -84,10 +84,9 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/90cd3a8c-fb3c-4726-9130-835d6ff087b0)
 
 2. Once your Container Apps Environment is created, right-click on it and select "Create Container App" and follow the steps. Select "Container Registry" option and use 5000 for port. While doing this select ACR and Image of backend app.
+   ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/9c38ed68-4c0f-4da6-bd6c-59b859319926)
 
-![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/9c38ed68-4c0f-4da6-bd6c-59b859319926)
-
-![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ac57d21d-5c6c-4066-8283-8a6046be71d9)
+   ![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/ac57d21d-5c6c-4066-8283-8a6046be71d9)
 
 ***Deploy Docker Image of frontend app to Azure Web-App***
 1. Before we deploy docker image of frontend app to Azure Web-App, make below change in app.py so frontend app will call backend app endpoint deployed in Azure Container app. Then re-deploy image of frontend app to Docker.  
