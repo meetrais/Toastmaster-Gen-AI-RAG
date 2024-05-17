@@ -1,7 +1,7 @@
 # Toastmaster-Gen-AI - WORK IN PROGRESS
 
 ## Introduction
-Gen-AI specialized chatbot designed to answer fundamental questions about Toastmaster program. This project demonstrates how to develop retrieval sugmented generation based chat-bot using Azure Open-AI service and Azure Cosmos-Db for Mongo-DB(VCore). Following are main functionalities of this project.  
+Gen-AI specialized chatbot designed to answer fundamental questions about Toastmaster program. This project demonstrates how to develop retrieval augmented generation based chat-bot using Azure Open-AI service and Azure Cosmos-Db for Mongo-DB(VCore). Following are the main functionalities of this project.  
 1. Create database, collection and vector-index in Mongo-DB(VCore) cluster.  
 2. Create and save embeddings for PDF file in Mongo-DB(VCore) database.  
 3. Perform plain vector search for user query/question.  
