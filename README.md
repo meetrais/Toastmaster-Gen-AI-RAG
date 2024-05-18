@@ -61,9 +61,9 @@ docker build -t toastmaster-gen-ai-frontend .
 docker run --name toastmaster-gen-ai-frontend -p 7860:7860 toastmaster-gen-ai-frontend  
 
 Both the above containers needs to be in the same Docker network so run below commands.  
-docker network create toastmaster-network
-docker network connect toastmaster-network toastmaster-gen-ai-backend
-docker network connect toastmaster-network toastmaster-gen-ai-frontend
+docker network create toastmaster-network  
+docker network connect toastmaster-network toastmaster-gen-ai-backend  
+docker network connect toastmaster-network toastmaster-gen-ai-frontend  
 
 ### Azure Deployment
 I use VS Code for development and deployments. So following steps use VS-Code and its Docker and Azure plugins. But you can also do all those steps using Azure CLI commands.
