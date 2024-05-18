@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-
+import requests
 
 # Create your views here.
 def index(request):
@@ -16,10 +16,28 @@ def section(request, num):
         return HttpResponse(texts[num-1])
     else:
         raise Http404("No such section")
+
+def getapiresponse(request, user_text):
+    ENVIRONMENT = 1
+    PORT=str(5000)
     
-def chatResponse(request, user_text):   
-    return HttpResponse(user_text)
-
-
+    if ENVIRONMENT==1:
+        BACKEND_SERVICE_ENDPOINT= "http://localhost:" + PORT
+    elif ENVIRONMENT==2:
+        BACKEND_SERVICE_ENDPOINT= "http://toastmaster-gen-ai-backend:" + PORT
+    elif ENVIRONMENT==3:
+        BACKEND_SERVICE_ENDPOINT= "https://tmbackendcontainerapp.nicesmoke-51dc90f5.southeastasia.azurecontainerapps.io"
+    
+    api = BACKEND_SERVICE_ENDPOINT
+    api+= "/getresponse?user_text=" + user_text
+    api+=  "&temperature=0.5"
+    api+=  "&top_k=2"
+    api+=  "&max_new_tokens=250"
+    api+=  "&top_p=0.80"
+    
+    r = requests.get(api, params=request.GET)
+    if r.status_code == 200:
+        return HttpResponse(r)
+    return HttpResponse('Something went wrong.')
     
     
