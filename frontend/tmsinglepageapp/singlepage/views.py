@@ -18,7 +18,7 @@ def section(request, num):
         raise Http404("No such section")
 
 def getapiresponse(request, user_text):
-    ENVIRONMENT = 1
+    ENVIRONMENT = 3
     PORT=str(5000)
     
     if ENVIRONMENT==1:

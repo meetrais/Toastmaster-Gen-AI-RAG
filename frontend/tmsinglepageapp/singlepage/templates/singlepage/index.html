@@ -121,7 +121,8 @@ body {
 <script lang="Javascript">
 
     function callRagChat()
-    {           
+    {    
+        document.getElementById('imgloading').style.display='block';
         var user_text = document.getElementsByClassName("input")[0].value;
         document.getElementsByClassName("input")[0].value='';
         if(user_text!="")
@@ -131,9 +132,10 @@ body {
             .then(text => {
                 var responseTextBox = document.getElementById('responseTextBox');
                 responseTextBox.innerHTML += htmlresponse(user_text,text);
-
+                document.getElementById('imgloading').style.display='none';
             });
         }
+        
     }
 
     function htmlresponse(user_text,chatresponse)
@@ -168,7 +170,9 @@ body {
         </div>
     </div>
     <div class="content">
-        <div id="responseTextBox" style="height: 100%;width:100%;border:1px solid black;padding-left: 5px;overflow-y:auto;"></div>
+        <div id="responseTextBox" style="height: 100%;width:100%;border:1px solid black;padding-left: 5px;overflow-y:auto;">
+            <img src="https://i.ibb.co/NCJqDtK/loading.gif" style="position:absolute; display: none;" id="imgloading"/>
+        </div>
     </div>
     <div class="input-container">
       <input type="text" class="input" id="inputControl" placeholder="Type a new question (e.g. what is Toastmaster Program?)"
