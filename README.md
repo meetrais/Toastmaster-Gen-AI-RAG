@@ -106,7 +106,6 @@ I use VS Code for development and deployments. So following steps use VS-Code an
 ## Showtime
 If you followed all the steps properly you should be able to see result of Retrieval Augmented Generation based Chat-Bot as below. 
 
-![image](https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/0b07101b-e0a3-4b62-8674-f7a792a0487b)
+<img width="827" alt="image" src="https://github.com/meetrais/Toastmaster-Gen-AI-RAG/assets/17907862/52a804c5-f648-487f-8a51-1b4d6af6a2dc">  
 
 If it doesnt work then reach out to me and I will be happy to help.
-
